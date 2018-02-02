@@ -1,4 +1,4 @@
-import webapi from '../../src/api/webapi'
+import webapi from '@/api/webapi'
 import EXIF from './exif'
 import Qs from 'qs'
 

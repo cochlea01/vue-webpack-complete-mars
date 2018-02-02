@@ -15,6 +15,10 @@
             ></VueCropper>
         </div>
         <button @click="finish('base64')" class="btn">preview(base64)</button>
+        <button @click="changeScale(1)" class="btn">+</button>
+		<button @click="changeScale(-1)" class="btn">-</button>
+        <button @click="rotateLeft" class="btn">rotateLeft</button>
+		<button @click="rotateRight" class="btn">rotateRight</button>
         <div class="show-preview" :style="{'width': previews.w + 'px', 'height': previews.h + 'px',  'overflow': 'hidden', 'margin': '5px'}">
             <div :style="previews.div">
                 <img :src="previews.url" :style="previews.img">
@@ -25,6 +29,7 @@
 
 <script>
 import VueCropper from 'vue-cropper'
+import uploadImg from "@/assets/js/uploadImg"
 // import uploadImg from '@/assets/js/uploadImg'
 export default {
     name: 'HelloWorld',
@@ -35,8 +40,11 @@ export default {
         return {
             crap: false,
             previews: {
-                div:"background:red;width:200px;height:200px;",
-                url:''
+                div:"background:cyan;width:100%;height:100%;",
+                img:"margin:10% auto",
+                url:'',
+                w:500,
+                h:500,
             },
             option:{
                 img:'https://ss0.baidu.com/94o3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=71f6f27f2c7f9e2f6f351b082f31e962/500fd9f9d72a6059f550a1832334349b023bbae3.jpg',
@@ -70,7 +78,18 @@ export default {
 					this.previews.url = data
 				})
 			}
-		},
+        },
+        //改变图像大小
+        changeScale(num){
+            this.$refs.cropper.changeScale(num);
+        },
+        //旋转
+        rotateLeft(){
+            this.$refs.cropper.rotateLeft();
+        },
+        rotateRight(){
+            this.$refs.cropper.rotateRight();
+        }
     }
 }
 </script>
